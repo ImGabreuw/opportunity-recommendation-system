@@ -1,4 +1,4 @@
-package com.metis.opportunity_recommendation_algorithm.internal;
+package com.metis.opportunity_recommendation_algorithm.internal.models;
 
 import lombok.Data;
 
@@ -13,6 +13,10 @@ public class Edge {
     public Edge(Node target, RelationType type) {
         this.target = Objects.requireNonNull(target, "Node target cannot be null");
         this.type = Objects.requireNonNull(type, "Relation type cannot be null");
+    }
+
+    public boolean isConnectingTo(Node target, RelationType type) {
+        return this.target.equals(target) && this.type == type;
     }
 
 }

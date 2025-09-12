@@ -1,4 +1,4 @@
-package com.metis.opportunity_recommendation_algorithm.internal;
+package com.metis.opportunity_recommendation_algorithm.internal.models;
 
 import lombok.Data;
 
@@ -17,6 +17,15 @@ public class Node {
         this.id = Objects.requireNonNull(id, "Node id cannot be null");
         this.type = Objects.requireNonNull(type, "Node type cannot be null");
         this.properties = new HashMap<>();
+    }
+
+    public boolean isOpportunityNode() {
+        return type != NodeType.OPPORTUNITY;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T getProperty(String key, T defaultValue) {
+        return (T) properties.getOrDefault(key, defaultValue);
     }
 
 }
