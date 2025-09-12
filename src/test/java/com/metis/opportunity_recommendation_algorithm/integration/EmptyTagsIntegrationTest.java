@@ -73,8 +73,8 @@ public class EmptyTagsIntegrationTest {
         Node javaSkill = new Node("java", NodeType.SKILL);
         Node pythonSkill = new Node("python", NodeType.SKILL);
 
-        javaJob.getProperties().put("description", "Java Developer Position");
-        pythonJob.getProperties().put("description", "Python Developer Position");
+        javaJob.setProperty("description", "Java Developer Position");
+        pythonJob.setProperty("description", "Python Developer Position");
 
         graph.addNode(student);
         graph.addNode(javaJob);
@@ -102,8 +102,8 @@ public class EmptyTagsIntegrationTest {
         Node javaSkill = new Node("java", NodeType.SKILL);
         Node pythonSkill = new Node("python", NodeType.SKILL);
 
-        javaJob.getProperties().put("description", "Java Developer Position");
-        pythonJob.getProperties().put("description", "Python Developer Position");
+        javaJob.setProperty("description", "Java Developer Position");
+        pythonJob.setProperty("description", "Python Developer Position");
 
         graph.addNode(student);
         graph.addNode(javascriptSkill);
@@ -132,8 +132,8 @@ public class EmptyTagsIntegrationTest {
         Node generalJob1 = new Node("general_job1", NodeType.OPPORTUNITY);
         Node generalJob2 = new Node("general_job2", NodeType.OPPORTUNITY);
 
-        generalJob1.getProperties().put("description", "General Position 1");
-        generalJob2.getProperties().put("description", "General Position 2");
+        generalJob1.setProperty("description", "General Position 1");
+        generalJob2.setProperty("description", "General Position 2");
 
         graph.addNode(student);
         graph.addNode(javaSkill);

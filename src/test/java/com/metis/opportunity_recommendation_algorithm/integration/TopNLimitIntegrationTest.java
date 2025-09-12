@@ -50,10 +50,10 @@ public class TopNLimitIntegrationTest {
         Node opp3 = new Node("job3", NodeType.OPPORTUNITY);
         Node opp4 = new Node("job4", NodeType.OPPORTUNITY);
 
-        opp1.getProperties().put("description", "Java Developer 1");
-        opp2.getProperties().put("description", "Java Developer 2");
-        opp3.getProperties().put("description", "Java Developer 3");
-        opp4.getProperties().put("description", "Java Developer 4");
+        opp1.setProperty("description", "Java Developer 1");
+        opp2.setProperty("description", "Java Developer 2");
+        opp3.setProperty("description", "Java Developer 3");
+        opp4.setProperty("description", "Java Developer 4");
 
         graph.addNode(student);
         graph.addNode(skill);
@@ -80,8 +80,8 @@ public class TopNLimitIntegrationTest {
         Node opp1 = new Node("job1", NodeType.OPPORTUNITY);
         Node opp2 = new Node("job2", NodeType.OPPORTUNITY);
 
-        opp1.getProperties().put("description", "Python Developer 1");
-        opp2.getProperties().put("description", "Python Developer 2");
+        opp1.setProperty("description", "Python Developer 1");
+        opp2.setProperty("description", "Python Developer 2");
 
         graph.addNode(student);
         graph.addNode(skill);

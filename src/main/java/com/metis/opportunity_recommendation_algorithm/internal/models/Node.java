@@ -28,4 +28,8 @@ public class Node {
         return (T) properties.getOrDefault(key, defaultValue);
     }
 
+    public void setProperty(String key, Object value) {
+        properties.put(key, value);
+    }
+
 }

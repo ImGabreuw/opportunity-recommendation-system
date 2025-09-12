@@ -75,8 +75,8 @@ public class RecommendationIntegrationTest {
         Node javaJob = new Node("java_job", NodeType.OPPORTUNITY);
         Node pythonJob = new Node("python_job", NodeType.OPPORTUNITY);
 
-        javaJob.getProperties().put("description", "Java Developer Position");
-        pythonJob.getProperties().put("description", "Python Developer Position");
+        javaJob.setProperty("description", "Java Developer Position");
+        pythonJob.setProperty("description", "Python Developer Position");
 
         graph.addNode(student);
         graph.addNode(javaSkill);

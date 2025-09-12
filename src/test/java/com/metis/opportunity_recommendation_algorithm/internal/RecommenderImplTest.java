@@ -30,8 +30,8 @@ public class RecommenderImplTest {
         Node opportunity1 = new Node("job1", NodeType.OPPORTUNITY);
         Node opportunity2 = new Node("job2", NodeType.OPPORTUNITY);
 
-        opportunity1.getProperties().put("description", "Java Developer Position");
-        opportunity2.getProperties().put("description", "Python Developer Position");
+        opportunity1.setProperty("description", "Java Developer Position");
+        opportunity2.setProperty("description", "Python Developer Position");
 
         graph.addNode(student);
         graph.addNode(skill1);
@@ -74,9 +74,9 @@ public class RecommenderImplTest {
         Node opportunity2 = new Node("job2", NodeType.OPPORTUNITY);
         Node opportunity3 = new Node("job3", NodeType.OPPORTUNITY);
 
-        opportunity1.getProperties().put("description", "Job 1");
-        opportunity2.getProperties().put("description", "Job 2");
-        opportunity3.getProperties().put("description", "Job 3");
+        opportunity1.setProperty("description", "Job 1");
+        opportunity2.setProperty("description", "Job 2");
+        opportunity3.setProperty("description", "Job 3");
 
         graph.addNode(student);
         graph.addNode(skill1);
