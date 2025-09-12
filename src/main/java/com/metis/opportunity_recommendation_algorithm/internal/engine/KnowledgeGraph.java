@@ -15,25 +15,8 @@ public class KnowledgeGraph {
     private final Map<String, Node> nodes = new HashMap<>();
     private final Map<Node, List<Edge>> adjacencyList = new HashMap<>();
 
-    public void addNode(Node node) {
-        nodes.put(node.getId(), node);
-        adjacencyList.putIfAbsent(node, new ArrayList<>());
-    }
-
     public Node getNode(String id) {
         return nodes.get(id);
-    }
-
-    public void addEdge(String sourceId, RelationType type, String targetId) {
-        Node sourceNode = getNode(sourceId);
-        Node targetNode = getNode(targetId);
-
-        if (sourceNode == null || targetNode == null) {
-            throw new IllegalArgumentException("Source or target node not found");
-        }
-
-        Edge edge = new Edge(targetNode, type);
-        adjacencyList.get(sourceNode).add(edge);
     }
 
     public Set<Node> getNodesConnectedFrom(Node source, RelationType type) {
@@ -60,6 +43,52 @@ public class KnowledgeGraph {
         }
 
         return result;
+    }
+
+    public void addNode(Node node) {
+        nodes.put(node.getId(), node);
+        adjacencyList.putIfAbsent(node, new ArrayList<>());
+    }
+
+    public void removeNode(String id) {
+        Node node = getNode(id);
+        if (node == null) {
+            throw new IllegalArgumentException("Node not found");
+        }
+
+        nodes.remove(id);
+        adjacencyList.remove(node);
+
+        // Remove edges connecting to this node
+        for (List<Edge> edges : adjacencyList.values()) {
+            edges.removeIf(edge -> edge.getTarget().equals(node));
+        }
+    }
+
+    public void addEdge(String sourceId, RelationType type, String targetId) {
+        Node sourceNode = getNode(sourceId);
+        Node targetNode = getNode(targetId);
+
+        if (sourceNode == null || targetNode == null) {
+            throw new IllegalArgumentException("Source or target node not found");
+        }
+
+        Edge edge = new Edge(targetNode, type);
+        adjacencyList.get(sourceNode).add(edge);
+    }
+
+    public void removeEdge(String sourceId, RelationType type, String targetId) {
+        Node sourceNode = getNode(sourceId);
+        Node targetNode = getNode(targetId);
+
+        if (sourceNode == null || targetNode == null) {
+            throw new IllegalArgumentException("Source or target node not found");
+        }
+
+        List<Edge> edges = adjacencyList.get(sourceNode);
+        if (edges != null) {
+            edges.removeIf(edge -> edge.isConnectingTo(targetNode, type));
+        }
     }
 
 }
