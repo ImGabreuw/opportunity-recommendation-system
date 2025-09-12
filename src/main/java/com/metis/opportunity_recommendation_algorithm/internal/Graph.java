@@ -1,4 +1,4 @@
-package internal;
+package com.metis.opportunity_recommendation_algorithm.internal;
 
 import lombok.extern.slf4j.Slf4j;
 

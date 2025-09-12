@@ -1,4 +1,4 @@
-package internal;
+package com.metis.opportunity_recommendation_algorithm.internal;
 
 public enum RelationType {
 

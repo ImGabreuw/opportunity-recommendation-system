@@ -1,4 +1,6 @@
-import internal.*;
+package com.metis.opportunity_recommendation_algorithm;
+
+import com.metis.opportunity_recommendation_algorithm.internal.*;
 
 public class Main {
 
