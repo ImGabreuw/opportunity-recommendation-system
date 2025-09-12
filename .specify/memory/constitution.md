@@ -108,7 +108,7 @@ Seguindo isso, o projeto evolui como uma biblioteca robusta: usuários programam
 
 ## Coding Conventions
 
-- **Nomenclatura**: PascalCase para classes, camelCase para métodos/variáveis, constantes em UPPER_SNAKE.
+- **Nomenclatura**: PascalCase para classes, camelCase para métodos/variáveis, constantes em UPPER_SNAKE. Nomes em inglês, claros e descritivos.
 - **Imutabilidade**: preferir objetos imutáveis (`@Value`) para dados de entrada e resultados intermediários; use builders (`@Builder`) para objetos complexos.
 - **Lombok**:
 	- `@Value` para value-objects imutáveis.
