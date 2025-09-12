@@ -62,11 +62,11 @@ public class TopNLimitIntegrationTest {
         graph.addNode(opp3);
         graph.addNode(opp4);
 
-        graph.addEdge("student1", RelationType.POSSUI_HABILIDADE, "java");
-        graph.addEdge("job1", RelationType.REQUER_HABILIDADE, "java");
-        graph.addEdge("job2", RelationType.REQUER_HABILIDADE, "java");
-        graph.addEdge("job3", RelationType.REQUER_HABILIDADE, "java");
-        graph.addEdge("job4", RelationType.REQUER_HABILIDADE, "java");
+        graph.addEdge("student1", RelationType.HAS_SKILL, "java");
+        graph.addEdge("job1", RelationType.REQUIRES_SKILL, "java");
+        graph.addEdge("job2", RelationType.REQUIRES_SKILL, "java");
+        graph.addEdge("job3", RelationType.REQUIRES_SKILL, "java");
+        graph.addEdge("job4", RelationType.REQUIRES_SKILL, "java");
 
         return graph;
     }
@@ -88,9 +88,9 @@ public class TopNLimitIntegrationTest {
         graph.addNode(opp1);
         graph.addNode(opp2);
 
-        graph.addEdge("student1", RelationType.POSSUI_HABILIDADE, "python");
-        graph.addEdge("job1", RelationType.REQUER_HABILIDADE, "python");
-        graph.addEdge("job2", RelationType.REQUER_HABILIDADE, "python");
+        graph.addEdge("student1", RelationType.HAS_SKILL, "python");
+        graph.addEdge("job1", RelationType.REQUIRES_SKILL, "python");
+        graph.addEdge("job2", RelationType.REQUIRES_SKILL, "python");
 
         return graph;
     }

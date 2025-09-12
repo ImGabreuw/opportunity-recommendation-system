@@ -84,10 +84,10 @@ public class RecommendationIntegrationTest {
         graph.addNode(javaJob);
         graph.addNode(pythonJob);
 
-        graph.addEdge("student1", RelationType.POSSUI_HABILIDADE, "java");
-        graph.addEdge("student1", RelationType.POSSUI_HABILIDADE, "python");
-        graph.addEdge("java_job", RelationType.REQUER_HABILIDADE, "java");
-        graph.addEdge("python_job", RelationType.REQUER_HABILIDADE, "python");
+        graph.addEdge("student1", RelationType.HAS_SKILL, "java");
+        graph.addEdge("student1", RelationType.HAS_SKILL, "python");
+        graph.addEdge("java_job", RelationType.REQUIRES_SKILL, "java");
+        graph.addEdge("python_job", RelationType.REQUIRES_SKILL, "python");
 
         return graph;
     }
@@ -108,10 +108,10 @@ public class RecommendationIntegrationTest {
         graph.addNode(aiTheme);
         graph.addNode(aiJavaJob);
 
-        graph.addEdge("student1", RelationType.POSSUI_HABILIDADE, "java");
-        graph.addEdge("student1", RelationType.TEM_INTERESSE_EM, "ai");
-        graph.addEdge("ai_java_job", RelationType.REQUER_HABILIDADE, "java");
-        graph.addEdge("ai_java_job", RelationType.RELACIONADA_A_TEMA, "ai");
+        graph.addEdge("student1", RelationType.HAS_SKILL, "java");
+        graph.addEdge("student1", RelationType.INTERESTED_IN, "ai");
+        graph.addEdge("ai_java_job", RelationType.REQUIRES_SKILL, "java");
+        graph.addEdge("ai_java_job", RelationType.RELATED_TO_THEME, "ai");
 
         return graph;
     }

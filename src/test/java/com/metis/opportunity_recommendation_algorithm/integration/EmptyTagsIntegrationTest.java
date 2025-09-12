@@ -82,8 +82,8 @@ public class EmptyTagsIntegrationTest {
         graph.addNode(javaSkill);
         graph.addNode(pythonSkill);
 
-        graph.addEdge("java_job", RelationType.REQUER_HABILIDADE, "java");
-        graph.addEdge("python_job", RelationType.REQUER_HABILIDADE, "python");
+        graph.addEdge("java_job", RelationType.REQUIRES_SKILL, "java");
+        graph.addEdge("python_job", RelationType.REQUIRES_SKILL, "python");
 
         return graph;
     }
@@ -113,10 +113,10 @@ public class EmptyTagsIntegrationTest {
         graph.addNode(javaSkill);
         graph.addNode(pythonSkill);
 
-        graph.addEdge("student1", RelationType.POSSUI_HABILIDADE, "javascript");
-        graph.addEdge("student1", RelationType.POSSUI_HABILIDADE, "react");
-        graph.addEdge("java_job", RelationType.REQUER_HABILIDADE, "java");
-        graph.addEdge("python_job", RelationType.REQUER_HABILIDADE, "python");
+        graph.addEdge("student1", RelationType.HAS_SKILL, "javascript");
+        graph.addEdge("student1", RelationType.HAS_SKILL, "react");
+        graph.addEdge("java_job", RelationType.REQUIRES_SKILL, "java");
+        graph.addEdge("python_job", RelationType.REQUIRES_SKILL, "python");
 
         return graph;
     }
@@ -141,8 +141,8 @@ public class EmptyTagsIntegrationTest {
         graph.addNode(generalJob1);
         graph.addNode(generalJob2);
 
-        graph.addEdge("student1", RelationType.POSSUI_HABILIDADE, "java");
-        graph.addEdge("student1", RelationType.POSSUI_HABILIDADE, "python");
+        graph.addEdge("student1", RelationType.HAS_SKILL, "java");
+        graph.addEdge("student1", RelationType.HAS_SKILL, "python");
 
         return graph;
     }

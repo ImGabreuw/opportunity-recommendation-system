@@ -39,10 +39,10 @@ public class RecommenderImplTest {
         graph.addNode(opportunity1);
         graph.addNode(opportunity2);
 
-        graph.addEdge("student1", RelationType.POSSUI_HABILIDADE, "java");
-        graph.addEdge("student1", RelationType.POSSUI_HABILIDADE, "python");
-        graph.addEdge("job1", RelationType.REQUER_HABILIDADE, "java");
-        graph.addEdge("job2", RelationType.REQUER_HABILIDADE, "python");
+        graph.addEdge("student1", RelationType.HAS_SKILL, "java");
+        graph.addEdge("student1", RelationType.HAS_SKILL, "python");
+        graph.addEdge("job1", RelationType.REQUIRES_SKILL, "java");
+        graph.addEdge("job2", RelationType.REQUIRES_SKILL, "python");
 
         Recommender recommender = RecommenderFactory.create(graph);
 
@@ -84,10 +84,10 @@ public class RecommenderImplTest {
         graph.addNode(opportunity2);
         graph.addNode(opportunity3);
 
-        graph.addEdge("student1", RelationType.POSSUI_HABILIDADE, "java");
-        graph.addEdge("job1", RelationType.REQUER_HABILIDADE, "java");
-        graph.addEdge("job2", RelationType.REQUER_HABILIDADE, "java");
-        graph.addEdge("job3", RelationType.REQUER_HABILIDADE, "java");
+        graph.addEdge("student1", RelationType.HAS_SKILL, "java");
+        graph.addEdge("job1", RelationType.REQUIRES_SKILL, "java");
+        graph.addEdge("job2", RelationType.REQUIRES_SKILL, "java");
+        graph.addEdge("job3", RelationType.REQUIRES_SKILL, "java");
 
         Recommender recommender = RecommenderFactory.create(graph);
 

@@ -1,6 +1,5 @@
 package com.metis.opportunity_recommendation_algorithm;
 
-import com.metis.opportunity_recommendation_algorithm.internal.*;
 import com.metis.opportunity_recommendation_algorithm.internal.engine.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.engine.RecommendationAlgorithm;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
@@ -24,19 +23,19 @@ public class Main {
         graph.addNode(new Node("op1", NodeType.OPPORTUNITY));
         graph.addNode(new Node("op2", NodeType.OPPORTUNITY));
 
-        graph.addEdge("aluno1", RelationType.POSSUI_HABILIDADE, "hab_java");
-        graph.addEdge("aluno1", RelationType.TEM_INTERESSE_EM, "tema_ia");
+        graph.addEdge("aluno1", RelationType.HAS_SKILL, "hab_java");
+        graph.addEdge("aluno1", RelationType.INTERESTED_IN, "tema_ia");
 
-        graph.addEdge("aluno2", RelationType.POSSUI_HABILIDADE, "hab_python");
-        graph.addEdge("aluno2", RelationType.POSSUI_HABILIDADE, "hab_sql");
-        graph.addEdge("aluno2", RelationType.TEM_INTERESSE_EM, "tema_dados");
+        graph.addEdge("aluno2", RelationType.HAS_SKILL, "hab_python");
+        graph.addEdge("aluno2", RelationType.HAS_SKILL, "hab_sql");
+        graph.addEdge("aluno2", RelationType.INTERESTED_IN, "tema_dados");
 
-        graph.addEdge("op1", RelationType.REQUER_HABILIDADE, "hab_java");
-        graph.addEdge("op1", RelationType.REQUER_HABILIDADE, "hab_python");
-        graph.addEdge("op1", RelationType.RELACIONADA_A_TEMA, "tema_ia");
+        graph.addEdge("op1", RelationType.REQUIRES_SKILL, "hab_java");
+        graph.addEdge("op1", RelationType.REQUIRES_SKILL, "hab_python");
+        graph.addEdge("op1", RelationType.RELATED_TO_THEME, "tema_ia");
 
-        graph.addEdge("op2", RelationType.REQUER_HABILIDADE, "hab_sql");
-        graph.addEdge("op2", RelationType.RELACIONADA_A_TEMA, "tema_dados");
+        graph.addEdge("op2", RelationType.REQUIRES_SKILL, "hab_sql");
+        graph.addEdge("op2", RelationType.RELATED_TO_THEME, "tema_dados");
 
         return graph;
     }
@@ -48,10 +47,10 @@ public class Main {
         System.out.println("=== Sistema de Recomendação de Oportunidades ===");
         System.out.println();
         System.out.println("Pesos dos tipos de relacionamento:");
-        System.out.println("- POSSUI_HABILIDADE: " + RelationType.POSSUI_HABILIDADE.getWeight());
-        System.out.println("- TEM_INTERESSE_EM: " + RelationType.TEM_INTERESSE_EM.getWeight());
-        System.out.println("- REQUER_HABILIDADE: " + RelationType.REQUER_HABILIDADE.getWeight());
-        System.out.println("- RELACIONADA_A_TEMA: " + RelationType.RELACIONADA_A_TEMA.getWeight());
+        System.out.println("- HAS_SKILL: " + RelationType.HAS_SKILL.getWeight());
+        System.out.println("- INTERESTED_IN: " + RelationType.INTERESTED_IN.getWeight());
+        System.out.println("- REQUIRES_SKILL: " + RelationType.REQUIRES_SKILL.getWeight());
+        System.out.println("- RELATED_TO_THEME: " + RelationType.RELATED_TO_THEME.getWeight());
         System.out.println();
 
         System.out.println("Recomendações para Maria (Java + IA):");
@@ -65,10 +64,10 @@ public class Main {
         System.out.println();
         System.out.println("Cálculo do score para Maria:");
         System.out.println("- Oportunidade 1 (op1):");
-        System.out.println("  * Requer Java: Maria possui Java → +" + RelationType.REQUER_HABILIDADE.getWeight());
+        System.out.println("  * Requer Java: Maria possui Java → +" + RelationType.REQUIRES_SKILL.getWeight());
         System.out.println("  * Requer Python: Maria NÃO possui Python → +0");
-        System.out.println("  * Relacionada a IA: Maria tem interesse em IA → +" + RelationType.RELACIONADA_A_TEMA.getWeight());
-        System.out.println("  * Score total: " + (RelationType.REQUER_HABILIDADE.getWeight() + RelationType.RELACIONADA_A_TEMA.getWeight()));
+        System.out.println("  * Relacionada a IA: Maria tem interesse em IA → +" + RelationType.RELATED_TO_THEME.getWeight());
+        System.out.println("  * Score total: " + (RelationType.REQUIRES_SKILL.getWeight() + RelationType.RELATED_TO_THEME.getWeight()));
 
         System.out.println();
         System.out.println("Recomendações para João (Python + SQL + Dados):");

@@ -25,32 +25,32 @@ public class RecommendationAlgorithm {
             throw new IllegalArgumentException("Student not found");
         }
 
-        Set<Node> studentSkills = graph.getNodesConnectedFrom(student, RelationType.POSSUI_HABILIDADE);
-        Set<Node> studentThemes = graph.getNodesConnectedFrom(student, RelationType.TEM_INTERESSE_EM);
+        Set<Node> studentSkills = graph.getNodesConnectedFrom(student, RelationType.HAS_SKILL);
+        Set<Node> studentThemes = graph.getNodesConnectedFrom(student, RelationType.INTERESTED_IN);
 
         Set<Node> candidateOpportunities = new HashSet<>();
         for (Node habilidade : studentSkills) {
-            candidateOpportunities.addAll(graph.getNodesConnectedTo(habilidade, RelationType.REQUER_HABILIDADE));
+            candidateOpportunities.addAll(graph.getNodesConnectedTo(habilidade, RelationType.REQUIRES_SKILL));
         }
         for (Node tema : studentThemes) {
-            candidateOpportunities.addAll(graph.getNodesConnectedTo(tema, RelationType.RELACIONADA_A_TEMA));
+            candidateOpportunities.addAll(graph.getNodesConnectedTo(tema, RelationType.RELATED_TO_THEME));
         }
 
         List<ScoredOpportunity> scoredOpportunities = new ArrayList<>();
         for (Node oportunidade : candidateOpportunities) {
             double score = 0.0;
 
-            Set<Node> opportunitySkills = graph.getNodesConnectedFrom(oportunidade, RelationType.REQUER_HABILIDADE);
+            Set<Node> opportunitySkills = graph.getNodesConnectedFrom(oportunidade, RelationType.REQUIRES_SKILL);
             for (Node requiredSkill : opportunitySkills) {
                 if (studentSkills.contains(requiredSkill)) {
-                    score += RelationType.REQUER_HABILIDADE.getWeight();
+                    score += RelationType.REQUIRES_SKILL.getWeight();
                 }
             }
 
-            Set<Node> opportunityThemes = graph.getNodesConnectedFrom(oportunidade, RelationType.RELACIONADA_A_TEMA);
+            Set<Node> opportunityThemes = graph.getNodesConnectedFrom(oportunidade, RelationType.RELATED_TO_THEME);
             for (Node relatedTheme : opportunityThemes) {
                 if (studentThemes.contains(relatedTheme)) {
-                    score += RelationType.RELACIONADA_A_TEMA.getWeight();
+                    score += RelationType.RELATED_TO_THEME.getWeight();
                 }
             }
 

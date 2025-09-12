@@ -25,8 +25,8 @@ public class RecommenderContractTest {
         graph.addNode(student);
         graph.addNode(skill);
         graph.addNode(opportunity);
-        graph.addEdge("student123", RelationType.POSSUI_HABILIDADE, "java");
-        graph.addEdge("job1", RelationType.REQUER_HABILIDADE, "java");
+        graph.addEdge("student123", RelationType.HAS_SKILL, "java");
+        graph.addEdge("job1", RelationType.REQUIRES_SKILL, "java");
 
         Recommender recommender = RecommenderFactory.create(graph);
         String studentId = "student123";
@@ -63,8 +63,8 @@ public class RecommenderContractTest {
         graph.addNode(student);
         graph.addNode(skill);
         graph.addNode(opportunity);
-        graph.addEdge("student123", RelationType.POSSUI_HABILIDADE, "java");
-        graph.addEdge("job1", RelationType.REQUER_HABILIDADE, "java");
+        graph.addEdge("student123", RelationType.HAS_SKILL, "java");
+        graph.addEdge("job1", RelationType.REQUIRES_SKILL, "java");
 
         Recommender recommender = RecommenderFactory.create(graph);
         String studentId = "student123";

@@ -20,7 +20,7 @@ public class Node {
     }
 
     public boolean isOpportunityNode() {
-        return type != NodeType.OPPORTUNITY;
+        return type == NodeType.OPPORTUNITY;
     }
 
     @SuppressWarnings("unchecked")
