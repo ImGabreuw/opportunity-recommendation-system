@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteTargetsManager">
+    <targets>
+      <target name="WSL" type="wsl" uuid="77cf23bd-4849-4426-b224-6110fbf7eb25">
+        <config>
+          <option name="distributionMsId" value="archlinux" />
+        </config>
+        <ContributedStateBase type="JavaLanguageRuntime">
+          <config>
+            <option name="homePath" value="$PROJECT_DIR$/../../.local/share/mise/installs/java/zulu-21" />
+          </config>
+        </ContributedStateBase>
+        <ContributedStateBase type="MavenRuntime">
+          <config>
+            <option name="homePath" value="/home/geron/.local/share/mise/installs/maven/3.9.10/apache-maven-3.9.10" />
+            <option name="versionString" value="3.9.10" />
+          </config>
+        </ContributedStateBase>
+      </target>
+    </targets>
+  </component>
+</project>
