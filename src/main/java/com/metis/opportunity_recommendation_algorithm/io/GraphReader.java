@@ -1,15 +1,14 @@
 package com.metis.opportunity_recommendation_algorithm.io;
 
 import com.metis.opportunity_recommendation_algorithm.internal.engine.KnowledgeGraph;
-import com.metis.opportunity_recommendation_algorithm.internal.models.Edge;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
 import com.metis.opportunity_recommendation_algorithm.internal.models.NodeType;
 import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,6 +17,7 @@ import java.nio.file.Paths;
 @RequiredArgsConstructor
 public class GraphReader {
 
+    @Getter
     private final String filePath;
 
     @SneakyThrows
@@ -70,8 +70,8 @@ public class GraphReader {
                     }
 
                     String sourceId = parts[0];
-                    String targetId = parts[1];
-                    RelationType relationType = RelationType.fromName(parts[2]);
+                    RelationType relationType = RelationType.fromName(parts[1]);
+                    String targetId = parts[2];
 
                     if (relationType == null) {
                         throw new IllegalArgumentException("Unknown relation type at line " + (linePosition + 1) + ": " + parts[2]);

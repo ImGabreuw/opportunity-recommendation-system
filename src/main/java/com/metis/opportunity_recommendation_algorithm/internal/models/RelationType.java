@@ -3,6 +3,9 @@ package com.metis.opportunity_recommendation_algorithm.internal.models;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Getter
 public enum RelationType {
@@ -25,6 +28,12 @@ public enum RelationType {
             }
         }
         return null;
+    }
+
+    public static String listRelationTypes() {
+        return Arrays.stream(values())
+                .map(RelationType::name)
+                .collect(Collectors.joining(","));
     }
 
 }

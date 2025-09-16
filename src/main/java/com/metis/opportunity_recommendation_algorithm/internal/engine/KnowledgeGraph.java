@@ -18,6 +18,24 @@ public class KnowledgeGraph {
     @Getter
     private final Map<Node, List<Edge>> adjacencyList = new HashMap<>();
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<Node, List<Edge>> entry : adjacencyList.entrySet()) {
+            Node source = entry.getKey();
+
+            List<Edge> edges = entry.getValue();
+            for (Edge edge : edges) {
+                String edgeStr = "%s --[%s]--> %s".formatted(
+                        source.getId(),
+                        edge.getType().name(),
+                        edge.getTarget().getId());
+                sb.append(edgeStr).append("\n");
+            }
+        }
+        return sb.toString();
+    }
+
     public List<Node> getNodes() {
         return new ArrayList<>(nodes.values());
     }

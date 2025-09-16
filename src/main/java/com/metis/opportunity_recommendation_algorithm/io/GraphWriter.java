@@ -3,6 +3,7 @@ package com.metis.opportunity_recommendation_algorithm.io;
 import com.metis.opportunity_recommendation_algorithm.internal.engine.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Edge;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 
@@ -16,6 +17,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class GraphWriter {
 
+    @Getter
     private final String filePath;
 
     @SneakyThrows
