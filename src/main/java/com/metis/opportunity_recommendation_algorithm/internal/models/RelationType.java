@@ -18,4 +18,13 @@ public enum RelationType {
 
     private final double weight;
 
+    public static RelationType fromName(String name) {
+        for (RelationType type : values()) {
+            if (type.name().equalsIgnoreCase(name)) {
+                return type;
+            }
+        }
+        return null;
+    }
+
 }

@@ -1,0 +1,5 @@
+n # número de vértices
+<ID> <Tipo do Vértice>
+
+m # número de arestas
+<ID do Vértice 1> <ID do Vértice 2>

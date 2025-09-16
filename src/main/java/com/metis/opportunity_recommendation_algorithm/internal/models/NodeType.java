@@ -8,4 +8,13 @@ public enum NodeType {
     THEME,
     ;
 
+    public static NodeType fromName(String name) {
+        for (NodeType type : values()) {
+            if (type.name().equalsIgnoreCase(name)) {
+                return type;
+            }
+        }
+        return null;
+    }
+
 }
