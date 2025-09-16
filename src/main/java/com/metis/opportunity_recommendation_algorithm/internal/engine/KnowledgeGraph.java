@@ -1,5 +1,6 @@
 package com.metis.opportunity_recommendation_algorithm.internal.engine;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
@@ -13,7 +14,13 @@ import com.metis.opportunity_recommendation_algorithm.internal.models.RelationTy
 public class KnowledgeGraph {
 
     private final Map<String, Node> nodes = new HashMap<>();
+
+    @Getter
     private final Map<Node, List<Edge>> adjacencyList = new HashMap<>();
+
+    public List<Node> getNodes() {
+        return new ArrayList<>(nodes.values());
+    }
 
     public Node getNode(String id) {
         return nodes.get(id);
@@ -65,6 +72,10 @@ public class KnowledgeGraph {
         }
     }
 
+    public int countNodes() {
+        return nodes.size();
+    }
+
     public void addEdge(String sourceId, RelationType type, String targetId) {
         Node sourceNode = getNode(sourceId);
         Node targetNode = getNode(targetId);
@@ -89,6 +100,10 @@ public class KnowledgeGraph {
         if (edges != null) {
             edges.removeIf(edge -> edge.isConnectingTo(targetNode, type));
         }
+    }
+
+    public int countEdges() {
+        return adjacencyList.values().stream().mapToInt(List::size).sum();
     }
 
 }
