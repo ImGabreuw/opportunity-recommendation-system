@@ -1,5 +1,6 @@
 package com.metis.opportunity_recommendation_algorithm.internal.engine;
 
+import com.metis.opportunity_recommendation_algorithm.internal.GraphUtils;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Edge;
 import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
@@ -21,79 +22,16 @@ public class KosarajuAlgorithm {
     }
 
     /**
-     * @return Pilha com os nós na ordem de finalização (descrecente)
+     * Encontra os componentes fortemente conexos num grafo dirigido usando o algoritmo de Kosaraju
+     * @return Conjunto de conjuntos de nós, onde cada conjunto representa um componente fortemente conexo
      */
-    private Stack<Node> dfs(KnowledgeGraph graph) {
-        Stack<Node> finishingTime = new Stack<>();
-        Set<Node> visited = new HashSet<>();
-
-        for (Node node : graph.getNodes()) {
-            if (!visited.contains(node)) {
-                dfsR(graph, node, visited, finishingTime);
-            }
-        }
-
-        return finishingTime;
-    }
-
-    private void dfsR(KnowledgeGraph graph, Node currentNode, Set<Node> visited, Stack<Node> finishingTime) {
-        visited.add(currentNode);
-
-        List<Edge> edges = graph.getAdjacencyList().get(currentNode);
-        if (edges != null) {
-            for (Edge edge : edges) {
-                Node neighbor = edge.getTarget();
-                if (!visited.contains(neighbor)) {
-                    dfsR(graph, neighbor, visited, finishingTime);
-                }
-            }
-        }
-
-        finishingTime.push(currentNode);
-    }
-
-    private KnowledgeGraph transpose(KnowledgeGraph graph) {
-        KnowledgeGraph transposedGraph = new KnowledgeGraph();
-
-        for (Node source : graph.getNodes()) {
-            transposedGraph.addNode(source);
-
-            List<Edge> edges = graph.getAdjacencyList().get(source);
-            if (edges != null) {
-                String sourceId = source.getId();
-                for (Edge edge : edges) {
-                    Node target = edge.getTarget();
-                    transposedGraph.addNode(target);
-
-                    transposedGraph.addEdge(target.getId(), edge.getType(), sourceId);
-                }
-            }
-        }
-
-        return transposedGraph;
-    }
-
-    private void dsfOnTransposed(KnowledgeGraph transposedGraph, Node node, Set<Node> visited, Set<Node> components) {
-        visited.add(node);
-        components.add(node);
-
-        List<Edge> edges = transposedGraph.getAdjacencyList().get(node);
-        if (edges != null) {
-            for (Edge edge : edges) {
-                Node neighbor = edge.getTarget();
-                if (!visited.contains(neighbor)) {
-                    dsfOnTransposed(transposedGraph, neighbor, visited, components);
-                }
-            }
-        }
-    }
-
     public Set<Set<Node>> findStronglyConnectedComponents(KnowledgeGraph graph) {
         Set<Set<Node>> stronglyConnectedComponents = new HashSet<>();
+        DfsAlgorithm dfsAlgorithm = DfsAlgorithm.getInstance();
 
-        Stack<Node> finishingTime = dfs(graph);
+        Stack<Node> finishingTime = dfsAlgorithm.dfsWithFinishingTime(graph);
 
-        KnowledgeGraph transposedGraph = transpose(graph);
+        KnowledgeGraph transposedGraph = GraphUtils.transpose(graph);
         Set<Node> transposedVisited = new HashSet<>();
 
         while (!finishingTime.isEmpty()) {
@@ -101,7 +39,7 @@ public class KosarajuAlgorithm {
 
             if (!transposedVisited.contains(node)) {
                 Set<Node> component = new HashSet<>();
-                dsfOnTransposed(transposedGraph, node, transposedVisited, component);
+                dfsAlgorithm.dfsForComponent(transposedGraph, node, transposedVisited, component);
                 stronglyConnectedComponents.add(component);
             }
         }
@@ -109,6 +47,10 @@ public class KosarajuAlgorithm {
         return stronglyConnectedComponents;
     }
 
+    /**
+     * Obtém o grafo condensado a partir do grafo original, onde cada componente fortemente conexo é representado como um "super-nó"
+     * @return Grafo condensado
+     */
     public KnowledgeGraph getCondensedGraph(KnowledgeGraph graph) {
         Set<Set<Node>> sccs = findStronglyConnectedComponents(graph);
         Map<Node, Node> componentMap = new HashMap<>();
@@ -141,5 +83,4 @@ public class KosarajuAlgorithm {
 
         return condensedGraph;
     }
-
 }

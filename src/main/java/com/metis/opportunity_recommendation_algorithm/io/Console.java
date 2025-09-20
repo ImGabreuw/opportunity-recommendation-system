@@ -72,6 +72,9 @@ public class Console {
         } catch (NumberFormatException e) {
             option = -1; // Opção inválida
         }
+
+        System.out.println(); // Linha em branco para melhor visualização
+
         return option;
     }
 
@@ -252,18 +255,29 @@ public class Console {
             topN = 5;
         }
 
-        System.out.println(">>> Recomendações para o aluno " + studentId + ":");
-
         Recommender recommender = RecommenderFactory.create(graph);
         List<OpportunityResponse> opportunities = recommender.recommend(studentId, topN);
 
         if (opportunities.isEmpty()) {
             System.out.println(">>> Nenhuma oportunidade recomendada encontrada.");
         } else {
-            for (int i = 0; i < opportunities.size(); i++) {
-                OpportunityResponse opportunityResponse = opportunities.get(i);
-                System.out.printf("%d. %s (Relevância: %.2f)\n", i + 1, opportunityResponse.description(), opportunityResponse.relevanceScore());
-            }
+            printOpportunitiesTable(studentId, opportunities);
         }
     }
+
+    private static void printOpportunitiesTable(String studentId, List<OpportunityResponse> opportunities) {
+        System.out.printf("=== Recomendações de Oportunidades para o Aluno '%s' ===\n", studentId);
+
+        // Elementos alinhados a esquerda com largura fixa
+        System.out.printf("%-5s %-15s %-50s %-10s\n", "No.", "ID", "Descrição", "Relevância");
+        System.out.println("-------------------------------------------------------------------------------------");
+
+        for (int i = 0; i < opportunities.size(); i++) {
+            OpportunityResponse opp = opportunities.get(i);
+            System.out.printf("%-5d %-15s %-50s %-10.2f\n", i + 1, opp.id(), opp.description(), opp.relevanceScore());
+        }
+
+        System.out.println("-------------------------------------------------------------------------------------");
+    }
+
 }

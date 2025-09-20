@@ -20,8 +20,6 @@ public class RecommenderImpl implements Recommender {
 
     @Override
     public List<OpportunityResponse> recommend(String studentId, int topN) throws RecommendationException {
-        log.debug("Recommending opportunities for student {} with topN {}", studentId, topN);
-
         if (studentId == null || studentId.trim().isEmpty()) {
             throw new RecommendationException("Student ID cannot be null or empty");
         }
