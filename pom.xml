@@ -47,7 +47,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/ImGabreuw/opportunity-recommendation-system</url>
+            <url>https://maven.pkg.github.com/ImGabreuw/opportunityResponse-recommendation-system</url>
         </repository>
     </distributionManagement>
 

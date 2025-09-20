@@ -1,9 +1,10 @@
 package com.metis.opportunity_recommendation_algorithm.api;
 
+import com.metis.opportunity_recommendation_algorithm.api.response.OpportunityResponse;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OpportunityContractTest {
+public class OpportunityResponseContractTest {
 
     @Test
     void opportunity_shouldBeImmutable() {
@@ -11,7 +12,7 @@ public class OpportunityContractTest {
         String description = "Sample opportunity";
         double score = 0.85;
 
-        Opportunity opp = new Opportunity(id, description, score);
+        OpportunityResponse opp = new OpportunityResponse(id, description, score);
 
         assertEquals(id, opp.id());
         assertEquals(description, opp.description());
@@ -24,7 +25,7 @@ public class OpportunityContractTest {
         String description = null;
         double score = 0.5;
 
-        Opportunity opp = new Opportunity(id, description, score);
+        OpportunityResponse opp = new OpportunityResponse(id, description, score);
 
         assertEquals(id, opp.id());
         assertNull(opp.description());
@@ -33,9 +34,9 @@ public class OpportunityContractTest {
 
     @Test
     void opportunity_shouldImplementEqualsAndHashCode() {
-        Opportunity opp1 = new Opportunity("opp123", "desc", 0.8);
-        Opportunity opp2 = new Opportunity("opp123", "desc", 0.8);
-        Opportunity opp3 = new Opportunity("opp456", "desc", 0.8);
+        OpportunityResponse opp1 = new OpportunityResponse("opp123", "desc", 0.8);
+        OpportunityResponse opp2 = new OpportunityResponse("opp123", "desc", 0.8);
+        OpportunityResponse opp3 = new OpportunityResponse("opp456", "desc", 0.8);
 
         assertEquals(opp1, opp2);
         assertNotEquals(opp1, opp3);
@@ -44,7 +45,7 @@ public class OpportunityContractTest {
 
     @Test
     void opportunity_shouldImplementToString() {
-        Opportunity opp = new Opportunity("opp123", "Sample opp", 0.75);
+        OpportunityResponse opp = new OpportunityResponse("opp123", "Sample opp", 0.75);
 
         String str = opp.toString();
 

@@ -6,15 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
+import com.metis.opportunity_recommendation_algorithm.api.response.OpportunityResponse;
 import org.junit.jupiter.api.Test;
 
-import com.metis.opportunity_recommendation_algorithm.api.Opportunity;
 import com.metis.opportunity_recommendation_algorithm.api.Recommender;
 import com.metis.opportunity_recommendation_algorithm.api.RecommenderFactory;
 import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
-import com.metis.opportunity_recommendation_algorithm.internal.models.NodeType;
-import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.NodeType;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.RelationType;
 
 public class RecommendationIntegrationTest {
 
@@ -23,7 +23,7 @@ public class RecommendationIntegrationTest {
         KnowledgeGraph graph = createSampleRecommendationGraph();
         Recommender recommender = RecommenderFactory.create(graph);
 
-        List<Opportunity> result = recommender.recommend("student1", 10);
+        List<OpportunityResponse> result = recommender.recommend("student1", 10);
 
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -40,12 +40,12 @@ public class RecommendationIntegrationTest {
         KnowledgeGraph graph = createSampleRecommendationGraph();
         Recommender recommender = RecommenderFactory.create(graph);
 
-        List<Opportunity> result = recommender.recommend("student1", 10);
+        List<OpportunityResponse> result = recommender.recommend("student1", 10);
 
         assertNotNull(result);
         assertEquals(2, result.size());
 
-        for (Opportunity opp : result) {
+        for (OpportunityResponse opp : result) {
             assertEquals(2.0, opp.relevanceScore(), 0.01);
         }
     }
@@ -55,12 +55,12 @@ public class RecommendationIntegrationTest {
         KnowledgeGraph graph = createGraphWithMultipleMatches();
         Recommender recommender = RecommenderFactory.create(graph);
 
-        List<Opportunity> result = recommender.recommend("student1", 10);
+        List<OpportunityResponse> result = recommender.recommend("student1", 10);
 
         assertNotNull(result);
         assertEquals(1, result.size());
 
-        Opportunity opp = result.get(0);
+        OpportunityResponse opp = result.get(0);
         assertEquals(3.5, opp.relevanceScore(), 0.01);
     }
 

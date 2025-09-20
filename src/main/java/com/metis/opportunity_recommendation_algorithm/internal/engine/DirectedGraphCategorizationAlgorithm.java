@@ -1,12 +1,11 @@
 package com.metis.opportunity_recommendation_algorithm.internal.engine;
 
-import com.metis.opportunity_recommendation_algorithm.internal.models.DirectedGraphCategory;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.DirectedGraphCategory;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Edge;
 import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.util.HashSet;
 import java.util.List;

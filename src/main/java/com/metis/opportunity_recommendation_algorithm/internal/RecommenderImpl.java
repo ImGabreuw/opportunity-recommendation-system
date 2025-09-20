@@ -1,12 +1,10 @@
 package com.metis.opportunity_recommendation_algorithm.internal;
 
-import com.metis.opportunity_recommendation_algorithm.api.Opportunity;
+import com.metis.opportunity_recommendation_algorithm.api.response.OpportunityResponse;
 import com.metis.opportunity_recommendation_algorithm.api.Recommender;
 import com.metis.opportunity_recommendation_algorithm.api.exception.RecommendationException;
 import com.metis.opportunity_recommendation_algorithm.internal.engine.RecommendationAlgorithm;
-import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
-import com.metis.opportunity_recommendation_algorithm.internal.models.NodeType;
-import com.metis.opportunity_recommendation_algorithm.internal.models.ScoredOpportunity;
+import com.metis.opportunity_recommendation_algorithm.internal.models.response.ScoredOpportunityResponse;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +19,7 @@ public class RecommenderImpl implements Recommender {
     private final RecommendationAlgorithm recommendationAlgorithm;
 
     @Override
-    public List<Opportunity> recommend(String studentId, int topN) throws RecommendationException {
+    public List<OpportunityResponse> recommend(String studentId, int topN) throws RecommendationException {
         log.debug("Recommending opportunities for student {} with topN {}", studentId, topN);
 
         if (studentId == null || studentId.trim().isEmpty()) {
@@ -33,7 +31,7 @@ public class RecommenderImpl implements Recommender {
         }
 
         try {
-            List<ScoredOpportunity> scoredOpportunities = recommendationAlgorithm.recommend(studentId, topN);
+            List<ScoredOpportunityResponse> scoredOpportunities = recommendationAlgorithm.recommend(studentId, topN);
 
             return scoredOpportunities
                     .stream()

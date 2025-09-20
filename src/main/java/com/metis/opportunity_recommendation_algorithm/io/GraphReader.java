@@ -2,8 +2,8 @@ package com.metis.opportunity_recommendation_algorithm.io;
 
 import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
-import com.metis.opportunity_recommendation_algorithm.internal.models.NodeType;
-import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.NodeType;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.RelationType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;

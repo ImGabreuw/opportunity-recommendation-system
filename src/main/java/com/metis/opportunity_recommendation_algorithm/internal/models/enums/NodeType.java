@@ -1,4 +1,4 @@
-package com.metis.opportunity_recommendation_algorithm.internal.models;
+package com.metis.opportunity_recommendation_algorithm.internal.models.enums;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;

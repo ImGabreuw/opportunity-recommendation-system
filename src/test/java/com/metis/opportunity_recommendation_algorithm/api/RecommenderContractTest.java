@@ -1,10 +1,11 @@
 package com.metis.opportunity_recommendation_algorithm.api;
 
 import com.metis.opportunity_recommendation_algorithm.api.exception.RecommendationException;
+import com.metis.opportunity_recommendation_algorithm.api.response.OpportunityResponse;
 import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
-import com.metis.opportunity_recommendation_algorithm.internal.models.NodeType;
-import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.NodeType;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.RelationType;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,7 +33,7 @@ public class RecommenderContractTest {
         String studentId = "student123";
         int topN = 5;
 
-        List<Opportunity> result = recommender.recommend(studentId, topN);
+        List<OpportunityResponse> result = recommender.recommend(studentId, topN);
 
         assertNotNull(result);
         assertTrue(result.size() <= topN);
@@ -70,7 +71,7 @@ public class RecommenderContractTest {
         String studentId = "student123";
         int topN = 0;
 
-        List<Opportunity> result = recommender.recommend(studentId, topN);
+        List<OpportunityResponse> result = recommender.recommend(studentId, topN);
 
         assertNotNull(result);
         assertEquals(0, result.size());

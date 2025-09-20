@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
-import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;
-import com.metis.opportunity_recommendation_algorithm.internal.models.ScoredOpportunity;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.RelationType;
+import com.metis.opportunity_recommendation_algorithm.internal.models.response.ScoredOpportunityResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,7 +19,7 @@ public class RecommendationAlgorithm {
 
     private final KnowledgeGraph graph;
 
-    public List<ScoredOpportunity> recommend(String studentId, int topN) {
+    public List<ScoredOpportunityResponse> recommend(String studentId, int topN) {
         Node student = graph.getNode(studentId);
 
         if (student == null) {
@@ -37,7 +37,7 @@ public class RecommendationAlgorithm {
             candidateOpportunities.addAll(graph.getNodesConnectedTo(tema, RelationType.RELATED_TO_THEME));
         }
 
-        List<ScoredOpportunity> scoredOpportunities = new ArrayList<>();
+        List<ScoredOpportunityResponse> scoredOpportunities = new ArrayList<>();
         for (Node oportunidade : candidateOpportunities) {
             double score = 0.0;
 
@@ -56,12 +56,12 @@ public class RecommendationAlgorithm {
             }
 
             if (score > 0) {
-                scoredOpportunities.add(new ScoredOpportunity(oportunidade, score));
+                scoredOpportunities.add(new ScoredOpportunityResponse(oportunidade, score));
             }
         }
 
         return scoredOpportunities.stream()
-                .sorted(Comparator.comparingDouble(ScoredOpportunity::getScore).reversed())
+                .sorted(Comparator.comparingDouble(ScoredOpportunityResponse::score).reversed())
                 .limit(topN)
                 .collect(Collectors.toList());
     }

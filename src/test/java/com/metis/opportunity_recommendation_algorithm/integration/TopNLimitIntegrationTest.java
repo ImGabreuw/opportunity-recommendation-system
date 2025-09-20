@@ -5,15 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
+import com.metis.opportunity_recommendation_algorithm.api.response.OpportunityResponse;
 import org.junit.jupiter.api.Test;
 
-import com.metis.opportunity_recommendation_algorithm.api.Opportunity;
 import com.metis.opportunity_recommendation_algorithm.api.Recommender;
 import com.metis.opportunity_recommendation_algorithm.api.RecommenderFactory;
 import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
-import com.metis.opportunity_recommendation_algorithm.internal.models.NodeType;
-import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.NodeType;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.RelationType;
 
 public class TopNLimitIntegrationTest {
 
@@ -22,7 +22,7 @@ public class TopNLimitIntegrationTest {
         KnowledgeGraph graph = createGraphWithMultipleOpportunities();
         Recommender recommender = RecommenderFactory.create(graph);
 
-        List<Opportunity> result = recommender.recommend("student1", 3);
+        List<OpportunityResponse> result = recommender.recommend("student1", 3);
 
         assertNotNull(result);
         assertEquals(3, result.size());
@@ -33,7 +33,7 @@ public class TopNLimitIntegrationTest {
         KnowledgeGraph graph = createGraphWithTwoOpportunities();
         Recommender recommender = RecommenderFactory.create(graph);
 
-        List<Opportunity> result = recommender.recommend("student1", 5);
+        List<OpportunityResponse> result = recommender.recommend("student1", 5);
 
         assertNotNull(result);
         assertEquals(2, result.size());

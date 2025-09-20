@@ -1,11 +1,14 @@
 package com.metis.opportunity_recommendation_algorithm.io;
 
-import com.metis.opportunity_recommendation_algorithm.api.Opportunity;
+import com.metis.opportunity_recommendation_algorithm.api.response.OpportunityResponse;
 import com.metis.opportunity_recommendation_algorithm.api.Recommender;
 import com.metis.opportunity_recommendation_algorithm.api.RecommenderFactory;
 import com.metis.opportunity_recommendation_algorithm.internal.engine.DirectedGraphCategorizationAlgorithm;
 import com.metis.opportunity_recommendation_algorithm.internal.engine.KosarajuAlgorithm;
 import com.metis.opportunity_recommendation_algorithm.internal.models.*;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.DirectedGraphCategory;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.NodeType;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.RelationType;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
@@ -44,7 +47,7 @@ public class Console {
      */
 
     public void printMenuCommands() {
-        System.out.println("\n\n");
+        System.out.println();
         System.out.println("=== Menu de Comandos ===");
         System.out.println("1. Ler dados do arquivo grafo.txt");
         System.out.println("2. Gravar dados no arquivo grafo.txt");
@@ -252,14 +255,14 @@ public class Console {
         System.out.println(">>> Recomendações para o aluno " + studentId + ":");
 
         Recommender recommender = RecommenderFactory.create(graph);
-        List<Opportunity> opportunities = recommender.recommend(studentId, topN);
+        List<OpportunityResponse> opportunities = recommender.recommend(studentId, topN);
 
         if (opportunities.isEmpty()) {
             System.out.println(">>> Nenhuma oportunidade recomendada encontrada.");
         } else {
             for (int i = 0; i < opportunities.size(); i++) {
-                Opportunity opportunity = opportunities.get(i);
-                System.out.printf("%d. %s (Relevância: %.2f)\n", i + 1, opportunity.description(), opportunity.relevanceScore());
+                OpportunityResponse opportunityResponse = opportunities.get(i);
+                System.out.printf("%d. %s (Relevância: %.2f)\n", i + 1, opportunityResponse.description(), opportunityResponse.relevanceScore());
             }
         }
     }

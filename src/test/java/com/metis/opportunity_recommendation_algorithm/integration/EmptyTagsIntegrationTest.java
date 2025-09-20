@@ -6,16 +6,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
+import com.metis.opportunity_recommendation_algorithm.api.response.OpportunityResponse;
 import org.junit.jupiter.api.Test;
 
-import com.metis.opportunity_recommendation_algorithm.api.Opportunity;
 import com.metis.opportunity_recommendation_algorithm.api.Recommender;
 import com.metis.opportunity_recommendation_algorithm.api.RecommenderFactory;
 import com.metis.opportunity_recommendation_algorithm.api.exception.RecommendationException;
 import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
-import com.metis.opportunity_recommendation_algorithm.internal.models.NodeType;
-import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.NodeType;
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.RelationType;
 
 public class EmptyTagsIntegrationTest {
 
@@ -24,7 +24,7 @@ public class EmptyTagsIntegrationTest {
         KnowledgeGraph graph = createGraphWithStudentWithoutSkills();
         Recommender recommender = RecommenderFactory.create(graph);
 
-        List<Opportunity> result = recommender.recommend("student1", 10);
+        List<OpportunityResponse> result = recommender.recommend("student1", 10);
 
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list when student has no skills");
@@ -35,7 +35,7 @@ public class EmptyTagsIntegrationTest {
         KnowledgeGraph graph = createGraphWithNoMatchingOpportunities();
         Recommender recommender = RecommenderFactory.create(graph);
 
-        List<Opportunity> result = recommender.recommend("student1", 10);
+        List<OpportunityResponse> result = recommender.recommend("student1", 10);
 
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list when no opportunities match student skills");
@@ -46,7 +46,7 @@ public class EmptyTagsIntegrationTest {
         KnowledgeGraph graph = createGraphWithOpportunitiesWithoutSkills();
         Recommender recommender = RecommenderFactory.create(graph);
 
-        List<Opportunity> result = recommender.recommend("student1", 10);
+        List<OpportunityResponse> result = recommender.recommend("student1", 10);
 
         assertNotNull(result);
         assertTrue(result.isEmpty(), "Should return empty list when opportunities don't require skills");

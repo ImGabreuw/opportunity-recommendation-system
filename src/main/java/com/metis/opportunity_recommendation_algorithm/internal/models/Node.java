@@ -1,5 +1,6 @@
 package com.metis.opportunity_recommendation_algorithm.internal.models;
 
+import com.metis.opportunity_recommendation_algorithm.internal.models.enums.NodeType;
 import lombok.Data;
 
 import java.util.HashMap;

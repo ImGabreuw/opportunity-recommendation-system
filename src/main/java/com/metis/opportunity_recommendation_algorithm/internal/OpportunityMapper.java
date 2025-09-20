@@ -1,22 +1,22 @@
 package com.metis.opportunity_recommendation_algorithm.internal;
 
-import com.metis.opportunity_recommendation_algorithm.api.Opportunity;
+import com.metis.opportunity_recommendation_algorithm.api.response.OpportunityResponse;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
-import com.metis.opportunity_recommendation_algorithm.internal.models.ScoredOpportunity;
+import com.metis.opportunity_recommendation_algorithm.internal.models.response.ScoredOpportunityResponse;
 
 public class OpportunityMapper {
 
-    public static Opportunity mapToOpportunity(ScoredOpportunity scoredOpportunity) {
-        Node node = scoredOpportunity.getOpportunity();
+    public static OpportunityResponse mapToOpportunity(ScoredOpportunityResponse scoredOpportunityResponse) {
+        Node node = scoredOpportunityResponse.opportunity();
 
         if (!node.isOpportunityNode()) {
             throw new IllegalArgumentException("Node is not an opportunity: " + node.getId());
         }
 
         String description = node.getProperty("description", null);
-        double relevanceScore = scoredOpportunity.getScore();
+        double relevanceScore = scoredOpportunityResponse.score();
 
-        return new Opportunity(node.getId(), description, relevanceScore);
+        return new OpportunityResponse(node.getId(), description, relevanceScore);
     }
 
 }
