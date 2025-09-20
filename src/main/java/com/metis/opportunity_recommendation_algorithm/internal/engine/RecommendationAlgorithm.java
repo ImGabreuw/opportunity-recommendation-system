@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
 import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;
 import com.metis.opportunity_recommendation_algorithm.internal.models.ScoredOpportunity;

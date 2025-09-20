@@ -12,7 +12,7 @@ import com.metis.opportunity_recommendation_algorithm.api.Opportunity;
 import com.metis.opportunity_recommendation_algorithm.api.Recommender;
 import com.metis.opportunity_recommendation_algorithm.api.RecommenderFactory;
 import com.metis.opportunity_recommendation_algorithm.api.exception.RecommendationException;
-import com.metis.opportunity_recommendation_algorithm.internal.engine.KnowledgeGraph;
+import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
 import com.metis.opportunity_recommendation_algorithm.internal.models.NodeType;
 import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;

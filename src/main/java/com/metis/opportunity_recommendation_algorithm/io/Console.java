@@ -1,18 +1,23 @@
 package com.metis.opportunity_recommendation_algorithm.io;
 
-import com.metis.opportunity_recommendation_algorithm.internal.engine.KnowledgeGraph;
-import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
-import com.metis.opportunity_recommendation_algorithm.internal.models.NodeType;
-import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;
+import com.metis.opportunity_recommendation_algorithm.api.Opportunity;
+import com.metis.opportunity_recommendation_algorithm.api.Recommender;
+import com.metis.opportunity_recommendation_algorithm.api.RecommenderFactory;
+import com.metis.opportunity_recommendation_algorithm.internal.engine.DirectedGraphCategorizationAlgorithm;
+import com.metis.opportunity_recommendation_algorithm.internal.engine.KosarajuAlgorithm;
+import com.metis.opportunity_recommendation_algorithm.internal.models.*;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Scanner;
 
 @RequiredArgsConstructor
 public class Console {
+
+    public static final int EXIT_OPTION = 11;
 
     private final GraphReader reader;
     private final GraphWriter writer;
@@ -34,7 +39,8 @@ public class Console {
     7. Mostrar conteúdo do arquivo;
     8. Mostrar grafo;
     9. Apresentar a conexidade do grafo e o reduzido;
-    10. Encerrar a aplicação.
+    10. Apresentar recomendações para um aluno;
+    11. Encerrar a aplicação.
      */
 
     public void printMenuCommands() {
@@ -49,7 +55,8 @@ public class Console {
         System.out.println("7. Mostrar conteúdo do arquivo");
         System.out.println("8. Mostrar grafo");
         System.out.println("9. Apresentar a conexidade do grafo e o reduzido");
-        System.out.println("10. Encerrar a aplicação");
+        System.out.println("10. Apresentar recomendações para um aluno");
+        System.out.println("11. Encerrar a aplicação");
         System.out.print("Escolha uma opção: ");
     }
 
@@ -200,7 +207,60 @@ public class Console {
     }
 
     public void showGraphConnectivityCommand() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (graph == null) {
+            System.out.println(">>> Nenhum grafo carregado. Use o comando 1 para ler os dados do arquivo.");
+            return;
+        }
+
+        DirectedGraphCategorizationAlgorithm categorizationAlgorithm = DirectedGraphCategorizationAlgorithm.getInstance();
+        DirectedGraphCategory category = categorizationAlgorithm.categorize(graph);
+
+        System.out.println(">>> Categoria do grafo: " + category);
+
+        KosarajuAlgorithm kosarajuAlgorithm = KosarajuAlgorithm.getInstance();
+        KnowledgeGraph condensedGraph = kosarajuAlgorithm.getCondensedGraph(graph);
+
+        System.out.println(">>> Grafo condensado (reduzido):");
+        System.out.println(condensedGraph);
     }
 
+    public void showRecommendationCommand() {
+        if (graph == null) {
+            System.out.println(">>> Nenhum grafo carregado. Use o comando 1 para ler os dados do arquivo.");
+            return;
+        }
+
+        System.out.print(">>> Informe o ID do aluno para recomendações: ");
+        String studentId = scanner.nextLine();
+
+        Node studentNode = graph.getNode(studentId);
+
+        if (studentNode == null || !studentNode.isStudentNode()) {
+            System.out.println(">>> Vértice de aluno não encontrado.");
+            return;
+        }
+
+        System.out.println(">>> Informe o número de recomendações desejadas: ");
+        int topN;
+        try {
+            topN = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println(">>> Número inválido. Usando 5 como padrão.");
+            topN = 5;
+        }
+
+        System.out.println(">>> Recomendações para o aluno " + studentId + ":");
+
+        Recommender recommender = RecommenderFactory.create(graph);
+        List<Opportunity> opportunities = recommender.recommend(studentId, topN);
+
+        if (opportunities.isEmpty()) {
+            System.out.println(">>> Nenhuma oportunidade recomendada encontrada.");
+        } else {
+            for (int i = 0; i < opportunities.size(); i++) {
+                Opportunity opportunity = opportunities.get(i);
+                System.out.printf("%d. %s (Relevância: %.2f)\n", i + 1, opportunity.description(), opportunity.relevanceScore());
+            }
+        }
+    }
 }

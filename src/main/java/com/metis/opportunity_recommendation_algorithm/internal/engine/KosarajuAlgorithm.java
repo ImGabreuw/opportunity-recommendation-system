@@ -1,33 +1,42 @@
 package com.metis.opportunity_recommendation_algorithm.internal.engine;
 
 import com.metis.opportunity_recommendation_algorithm.internal.models.Edge;
+import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
-import lombok.RequiredArgsConstructor;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.util.*;
 
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class KosarajuAlgorithm {
 
-    private final KnowledgeGraph graph;
+    private static KosarajuAlgorithm instance;
+
+    public static KosarajuAlgorithm getInstance() {
+        if (instance == null) {
+            instance = new KosarajuAlgorithm();
+        }
+        return instance;
+    }
 
     /**
      * @return Pilha com os nós na ordem de finalização (descrecente)
      */
-    private Stack<Node> dfs() {
+    private Stack<Node> dfs(KnowledgeGraph graph) {
         Stack<Node> finishingTime = new Stack<>();
         Set<Node> visited = new HashSet<>();
 
         for (Node node : graph.getNodes()) {
             if (!visited.contains(node)) {
-                dfsR(node, visited, finishingTime);
+                dfsR(graph, node, visited, finishingTime);
             }
         }
 
         return finishingTime;
     }
 
-    private void dfsR(Node currentNode, Set<Node> visited, Stack<Node> finishingTime) {
+    private void dfsR(KnowledgeGraph graph, Node currentNode, Set<Node> visited, Stack<Node> finishingTime) {
         visited.add(currentNode);
 
         List<Edge> edges = graph.getAdjacencyList().get(currentNode);
@@ -35,7 +44,7 @@ public class KosarajuAlgorithm {
             for (Edge edge : edges) {
                 Node neighbor = edge.getTarget();
                 if (!visited.contains(neighbor)) {
-                    dfsR(neighbor, visited, finishingTime);
+                    dfsR(graph, neighbor, visited, finishingTime);
                 }
             }
         }
@@ -43,19 +52,20 @@ public class KosarajuAlgorithm {
         finishingTime.push(currentNode);
     }
 
-    private KnowledgeGraph transpose() {
+    private KnowledgeGraph transpose(KnowledgeGraph graph) {
         KnowledgeGraph transposedGraph = new KnowledgeGraph();
 
-        for (Node node : graph.getNodes()) {
-            transposedGraph.addNode(node);
+        for (Node source : graph.getNodes()) {
+            transposedGraph.addNode(source);
 
-            String sourceId = node.getId();
-
-            List<Edge> edges = graph.getAdjacencyList().get(node);
+            List<Edge> edges = graph.getAdjacencyList().get(source);
             if (edges != null) {
+                String sourceId = source.getId();
                 for (Edge edge : edges) {
-                    Node targetId = edge.getTarget();
-                    transposedGraph.addEdge(targetId.getId(), edge.getType(), sourceId);
+                    Node target = edge.getTarget();
+                    transposedGraph.addNode(target);
+
+                    transposedGraph.addEdge(target.getId(), edge.getType(), sourceId);
                 }
             }
         }
@@ -78,12 +88,12 @@ public class KosarajuAlgorithm {
         }
     }
 
-    public Set<Set<Node>> findStronglyConnectedComponents() {
+    public Set<Set<Node>> findStronglyConnectedComponents(KnowledgeGraph graph) {
         Set<Set<Node>> stronglyConnectedComponents = new HashSet<>();
 
-        Stack<Node> finishingTime = dfs();
+        Stack<Node> finishingTime = dfs(graph);
 
-        KnowledgeGraph transposedGraph = transpose();
+        KnowledgeGraph transposedGraph = transpose(graph);
         Set<Node> transposedVisited = new HashSet<>();
 
         while (!finishingTime.isEmpty()) {
@@ -99,15 +109,34 @@ public class KosarajuAlgorithm {
         return stronglyConnectedComponents;
     }
 
-    public Map<String, Set<Node>> getCondensedGraph() {
-        Set<Set<Node>> sccs = findStronglyConnectedComponents();
+    public KnowledgeGraph getCondensedGraph(KnowledgeGraph graph) {
+        Set<Set<Node>> sccs = findStronglyConnectedComponents(graph);
+        Map<Node, Node> componentMap = new HashMap<>();
+        KnowledgeGraph condensedGraph = new KnowledgeGraph();
 
-        Map<String, Set<Node>> condensedGraph = new HashMap<>();
-        int componentId = 0;
-
+        // Create a mapping from each node to its component representative
         for (Set<Node> component : sccs) {
-            String id = "C" + componentId++;
-            condensedGraph.put(id, component);
+            Node representative = component.iterator().next();
+            condensedGraph.addNode(representative);
+            for (Node node : component) {
+                componentMap.put(node, representative);
+            }
+        }
+
+        // Add edges between components
+        for (Node node : graph.getNodes()) {
+            List<Edge> edges = graph.getAdjacencyList().get(node);
+            if (edges != null) {
+                for (Edge edge : edges) {
+                    Node target = edge.getTarget();
+                    Node sourceComponent = componentMap.get(node);
+                    Node targetComponent = componentMap.get(target);
+
+                    if (!sourceComponent.equals(targetComponent)) {
+                        condensedGraph.addEdge(sourceComponent.getId(), edge.getType(), targetComponent.getId());
+                    }
+                }
+            }
         }
 
         return condensedGraph;

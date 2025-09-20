@@ -23,6 +23,10 @@ public class Node {
         return type == NodeType.OPPORTUNITY;
     }
 
+    public boolean isStudentNode() {
+        return type == NodeType.STUDENT;
+    }
+
     @SuppressWarnings("unchecked")
     public <T> T getProperty(String key, T defaultValue) {
         return (T) properties.getOrDefault(key, defaultValue);

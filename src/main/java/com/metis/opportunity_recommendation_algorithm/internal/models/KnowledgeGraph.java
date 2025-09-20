@@ -1,8 +1,5 @@
-package com.metis.opportunity_recommendation_algorithm.internal.engine;
+package com.metis.opportunity_recommendation_algorithm.internal.models;
 
-import com.metis.opportunity_recommendation_algorithm.internal.models.Edge;
-import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
-import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 

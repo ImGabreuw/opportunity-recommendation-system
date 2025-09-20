@@ -1,6 +1,6 @@
 package com.metis.opportunity_recommendation_algorithm.io;
 
-import com.metis.opportunity_recommendation_algorithm.internal.engine.KnowledgeGraph;
+import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
 import com.metis.opportunity_recommendation_algorithm.internal.models.NodeType;
 import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;

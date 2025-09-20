@@ -13,9 +13,9 @@ public class OpportunityContractTest {
 
         Opportunity opp = new Opportunity(id, description, score);
 
-        assertEquals(id, opp.getId());
-        assertEquals(description, opp.getDescription());
-        assertEquals(score, opp.getRelevanceScore());
+        assertEquals(id, opp.id());
+        assertEquals(description, opp.description());
+        assertEquals(score, opp.relevanceScore());
     }
 
     @Test
@@ -26,9 +26,9 @@ public class OpportunityContractTest {
 
         Opportunity opp = new Opportunity(id, description, score);
 
-        assertEquals(id, opp.getId());
-        assertNull(opp.getDescription());
-        assertEquals(score, opp.getRelevanceScore());
+        assertEquals(id, opp.id());
+        assertNull(opp.description());
+        assertEquals(score, opp.relevanceScore());
     }
 
     @Test

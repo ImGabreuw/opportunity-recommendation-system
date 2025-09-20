@@ -1,7 +1,7 @@
 package com.metis.opportunity_recommendation_algorithm.api;
 
 import com.metis.opportunity_recommendation_algorithm.internal.RecommenderImpl;
-import com.metis.opportunity_recommendation_algorithm.internal.engine.KnowledgeGraph;
+import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.engine.RecommendationAlgorithm;
 
 public final class RecommenderFactory {

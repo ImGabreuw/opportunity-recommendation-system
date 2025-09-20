@@ -13,7 +13,7 @@ import com.metis.opportunity_recommendation_algorithm.api.Opportunity;
 import com.metis.opportunity_recommendation_algorithm.api.Recommender;
 import com.metis.opportunity_recommendation_algorithm.api.RecommenderFactory;
 import com.metis.opportunity_recommendation_algorithm.api.exception.RecommendationException;
-import com.metis.opportunity_recommendation_algorithm.internal.engine.KnowledgeGraph;
+import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
 import com.metis.opportunity_recommendation_algorithm.internal.models.NodeType;
 import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;
@@ -51,8 +51,8 @@ public class RecommenderImplTest {
         assertNotNull(result);
         assertEquals(2, result.size());
 
-        assertTrue(result.stream().anyMatch(op -> op.getId().equals("job1")));
-        assertTrue(result.stream().anyMatch(op -> op.getId().equals("job2")));
+        assertTrue(result.stream().anyMatch(op -> op.id().equals("job1")));
+        assertTrue(result.stream().anyMatch(op -> op.id().equals("job2")));
     }
 
     @Test

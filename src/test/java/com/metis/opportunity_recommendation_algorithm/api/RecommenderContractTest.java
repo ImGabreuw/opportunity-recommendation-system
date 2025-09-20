@@ -1,7 +1,7 @@
 package com.metis.opportunity_recommendation_algorithm.api;
 
 import com.metis.opportunity_recommendation_algorithm.api.exception.RecommendationException;
-import com.metis.opportunity_recommendation_algorithm.internal.engine.KnowledgeGraph;
+import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
 import com.metis.opportunity_recommendation_algorithm.internal.models.NodeType;
 import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;
@@ -37,7 +37,7 @@ public class RecommenderContractTest {
         assertNotNull(result);
         assertTrue(result.size() <= topN);
         assertEquals(1, result.size());
-        assertEquals("job1", result.get(0).getId());
+        assertEquals("job1", result.get(0).id());
     }
 
     @Test

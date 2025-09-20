@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import com.metis.opportunity_recommendation_algorithm.api.Opportunity;
 import com.metis.opportunity_recommendation_algorithm.api.Recommender;
 import com.metis.opportunity_recommendation_algorithm.api.RecommenderFactory;
-import com.metis.opportunity_recommendation_algorithm.internal.engine.KnowledgeGraph;
+import com.metis.opportunity_recommendation_algorithm.internal.models.KnowledgeGraph;
 import com.metis.opportunity_recommendation_algorithm.internal.models.Node;
 import com.metis.opportunity_recommendation_algorithm.internal.models.NodeType;
 import com.metis.opportunity_recommendation_algorithm.internal.models.RelationType;
@@ -28,8 +28,8 @@ public class RecommendationIntegrationTest {
         assertNotNull(result);
         assertEquals(2, result.size());
 
-        boolean hasJavaJob = result.stream().anyMatch(op -> op.getId().equals("java_job"));
-        boolean hasPythonJob = result.stream().anyMatch(op -> op.getId().equals("python_job"));
+        boolean hasJavaJob = result.stream().anyMatch(op -> op.id().equals("java_job"));
+        boolean hasPythonJob = result.stream().anyMatch(op -> op.id().equals("python_job"));
 
         assertTrue(hasJavaJob, "Java job should be recommended");
         assertTrue(hasPythonJob, "Python job should be recommended");
@@ -46,7 +46,7 @@ public class RecommendationIntegrationTest {
         assertEquals(2, result.size());
 
         for (Opportunity opp : result) {
-            assertEquals(2.0, opp.getRelevanceScore(), 0.01);
+            assertEquals(2.0, opp.relevanceScore(), 0.01);
         }
     }
 
@@ -61,7 +61,7 @@ public class RecommendationIntegrationTest {
         assertEquals(1, result.size());
 
         Opportunity opp = result.get(0);
-        assertEquals(3.5, opp.getRelevanceScore(), 0.01);
+        assertEquals(3.5, opp.relevanceScore(), 0.01);
     }
 
     private KnowledgeGraph createSampleRecommendationGraph() {

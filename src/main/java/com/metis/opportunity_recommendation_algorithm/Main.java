@@ -12,7 +12,7 @@ public class Main {
         Console console = new Console(reader, writer);
 
         int option;
-        while ((option = console.readOption()) != 10) {
+        while ((option = console.readOption()) != Console.EXIT_OPTION) {
             switch (option) {
                 case 1 -> console.readCommand();
                 case 2 -> console.writeCommand();
@@ -23,6 +23,7 @@ public class Main {
                 case 7 -> console.showFileContentCommand();
                 case 8 -> console.showGraphCommand();
                 case 9 -> console.showGraphConnectivityCommand();
+                case 10 -> console.showRecommendationCommand();
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
         }
