@@ -21,7 +21,7 @@ Baseado no contexto desse projeto, pode-se afirmar que ele está de acordo com o
 
 - 8: Trabalho decente e crescimento econômico, por conta do seguinte tópico:
 > 8.6 - Até 2030, reduzir substancialmente a proporção de jovens sem emprego, educação ou formação
-<img width="152" height="152" alt="image" src="https://github.com/user-attachments/assets/b19010b3-c82a-4c1d-9888-fa8577170877" />
+<img width="131" height="131" alt="image" src="https://github.com/user-attachments/assets/b19010b3-c82a-4c1d-9888-fa8577170877" />
 
 
 
