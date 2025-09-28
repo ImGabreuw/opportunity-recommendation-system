@@ -49,7 +49,7 @@ Baseado no contexto desse projeto, pode-se afirmar que ele está de acordo com o
 
 ### Testes
 
-#### Opção a) Ler dados do arquivo grafo.txt;
+#### Opção 1. Ler dados do arquivo grafo.txt;
 ##### Arquivo seguindo padrões exigidos
 <img width="336" height="101" alt="{17823D55-A549-4497-9C8C-9CBB002EE7AC}" src="https://github.com/user-attachments/assets/032f654a-6f30-4297-bd90-41feb29ee645" />
 
@@ -62,12 +62,24 @@ aluno8 STUDENT
 aluno9 STUDENT
 ```
 <img width="1094" height="125" alt="{D61D7227-21C3-42EE-9402-A6A74876ABC5}" src="https://github.com/user-attachments/assets/6d6f3a62-47d8-40a9-acb2-aed3b10e4ca4" />
+
 **OBS: A exceção foi montada no código, e não lançada inesperadamente.**
 
-#### Opção b) Gravar dados no arquivo grafo.txt;
-TODO
 
-#### Opção c) Inserir vértice;
+#### Opção 2. Gravar dados no arquivo grafo.txt;
+
+##### Com inserção de arestas e atualização no original
+
+<img width="1063" height="108" alt="{77BE1F96-D631-4F7E-9B65-26288DF0A71B}" src="https://github.com/user-attachments/assets/f4117c15-f1b2-49de-b4f1-6b81a294ea47" /><br>
+<img width="506" height="102" alt="{440E9152-00AD-46F4-BC79-2F4539FF9CB6}" src="https://github.com/user-attachments/assets/d1fdfa1b-2537-42a4-af9a-82795e918dc4" /><br>
+<img width="386" height="137" alt="{D61F5485-93DF-421B-AF21-5462E5747289}" src="https://github.com/user-attachments/assets/f5657f9d-5926-4405-96db-ffdea52ff375" />
+
+##### Sem ter grafo base gerado (sem ler arquivo ou montar manualmente)
+<img width="642" height="108" alt="{9BC96A82-4910-4ECD-A0CC-261FFEDCEF05}" src="https://github.com/user-attachments/assets/4bbab25d-17d9-4257-a3d2-b0894cbef9c1" />
+
+
+
+#### Opção 3. Inserir vértice;
 
 ##### Inserção válida
 <img width="584" height="97" alt="{6D707747-E7CC-445A-BCF3-999CBF381147}" src="https://github.com/user-attachments/assets/dd9b09e3-bb86-46a0-b259-56f1ca3c6d22" />
@@ -75,14 +87,16 @@ TODO
 ##### Inserção fora dos padrões
 <img width="649" height="81" alt="{870DC359-59DE-4995-9C62-E8E9E1237A3C}" src="https://github.com/user-attachments/assets/75ea4f0d-efed-4f42-a7af-f1152dc609d4" />
 
-#### Opção d) Inserir aresta;
+#### Opção 4. Inserir aresta;
 ##### Inserção válida
 <img width="1060" height="69" alt="{7F26F3AE-83EA-4EF8-8712-350261F81FD2}" src="https://github.com/user-attachments/assets/b468e38c-a25d-41b5-b5fa-8c262cd609ee" />
 
 ##### Inserção com nó inexistente
 <img width="1058" height="184" alt="{AAC76EC9-D0FE-4BAF-8A26-9C621FB23B64}" src="https://github.com/user-attachments/assets/294b81c5-23bd-4570-b7eb-6ee57b74b483" />
 
-#### Opção e) Remove vértice;
+**OBS: A exceção foi montada no código, e não lançada inesperadamente.**
+
+#### Opção 5. Remove vértice;
 ##### Nó existente
 
 <img width="422" height="80" alt="{7CDC7C2F-DDDE-45C3-8051-9D2619EAF9AB}" src="https://github.com/user-attachments/assets/47d03b79-4eb4-484d-82c5-09ced8fca210" />
@@ -90,17 +104,19 @@ TODO
 ##### Nó inexistente
 
 <img width="966" height="172" alt="{7FEA8670-AD9A-48CF-ABAD-0CB76084EB9D}" src="https://github.com/user-attachments/assets/3237f8dc-797a-4418-9f1f-989052a939ac" />
-**OBS: A exceção foi montada no código, e não lançada inesperadamente.**
 
-#### Opção f) Remove aresta;
+**OBS: A exceção foi montada no código, não lançada inesperadamente.**
+
+
+#### Opção 6. Remove aresta;
 ##### Aresta existente
 <img width="1186" height="84" alt="{1A154EF6-A92B-4799-97E6-958D335F9149}" src="https://github.com/user-attachments/assets/0713a71e-6d59-4ce7-abad-e8a96b691166" />
 
 ##### Aresta inexistente
 <img width="1204" height="87" alt="{C0993403-ABAD-4474-A57D-4FA163C69226}" src="https://github.com/user-attachments/assets/d066f86a-3fb2-4b0c-9684-f0ef91cbfa9d" />
-**OBS: A exceção foi montada no código, e não lançada inesperadamente.**
 
-#### Opção g) Mostrar conteúdo do arquivo;
+
+#### Opção 7. Mostrar conteúdo do arquivo;
 
 ##### Exibição esperada
 <img width="403" height="668" alt="{53DAAF54-96B2-40F2-A5DA-7F56476D0FBF}" src="https://github.com/user-attachments/assets/5fcfa83d-c5b6-4316-a4cb-b3b6bb91596e" />
@@ -108,7 +124,7 @@ TODO
 ##### Arquivo não encontrado
 <img width="312" height="103" alt="{37C2E569-352D-47F3-97CF-BDACDB059515}" src="https://github.com/user-attachments/assets/b2174fcc-57d8-4e4d-89ac-c8158cc37a14" />
 
-#### Opção h) Mostrar grafo;
+#### Opção 8. Mostrar grafo;
 
 ##### Exibição esperada
 <img width="587" height="719" alt="{B619BBD9-BFCF-4B01-9AFE-D1FDBB656D90}" src="https://github.com/user-attachments/assets/f2635055-887e-4f80-89d7-59e98afbfeb5" />
@@ -116,8 +132,8 @@ TODO
 ##### Exibição de grafo ainda não processado
 <img width="660" height="93" alt="{A0191419-D478-4755-9A75-186E4CDC87BC}" src="https://github.com/user-attachments/assets/8c2cbb02-1262-4988-a146-0b3d9210fb24" />
 
-#### Opção i) Apresentar a conexidade do grafo e o reduzido;
-##### Exibição de grafo original
+#### Opção 9. Apresentar a conexidade do grafo e o reduzido;
+##### Redução para grafo original C1
 <img width="501" height="240" alt="{7EB8E9ED-984C-407E-8FAF-FEBA08165850}" src="https://github.com/user-attachments/assets/edaf48d9-b78d-4476-a61d-45916ad7425b" />
 
 ##### Exibição de grafo modificado para C3
@@ -133,9 +149,65 @@ tema_ia INTERESTED_IN aluno1
 ```
 <img width="302" height="104" alt="{5DB424DA-ECA5-402B-A444-1ACC236CD730}" src="https://github.com/user-attachments/assets/e94085c6-459f-478e-93a8-8bc02df2e1ae" />
 
-**OBS: Note que não existe "tema" interessado em "aluno", então não há como o grafo do nosso projeto ser C3** 
+**OBS: O grafo reduzido não pode ser gerado, pois o grafo do nosso problema não pode ser C3. <br>Para tal exemplo, precisamos criar um grafo irreal, onde o "tema" é interessado em "aluno"** 
 
-#### Opção j) Encerrar a aplicação.
+#### Opção 10. (Opção desenvolvida por nós) Apresentar recomendações para um aluno
+##### Recomendação para aluno 3: Interessado em web
+```txt
+aluno3 HAS_SKILL hab_html
+aluno3 HAS_SKILL hab_css
+aluno3 HAS_SKILL hab_git
+aluno3 INTERESTED_IN tema_web
+...
+op4 REQUIRES_SKILL hab_js
+op4 REQUIRES_SKILL hab_html
+op4 REQUIRES_SKILL hab_css
+op4 REQUIRES_SKILL hab_communication
+op4 RELATED_TO_THEME tema_web
+op5 REQUIRES_SKILL hab_docker
+op5 REQUIRES_SKILL hab_kubernetes
+op5 REQUIRES_SKILL hab_aws
+op5 REQUIRES_SKILL hab_git
+op5 RELATED_TO_THEME tema_cloud
+op6 REQUIRES_SKILL hab_c
+op6 REQUIRES_SKILL hab_cpp
+op6 REQUIRES_SKILL hab_git
+op6 REQUIRES_SKILL hab_linux
+op6 RELATED_TO_THEME tema_mobile
+...
+```
+<img width="779" height="231" alt="{E6D4845F-F7AE-4061-8372-998678869270}" src="https://github.com/user-attachments/assets/a53e6fea-0dfc-40b8-9c63-1a1c9382025e" />
+
+**OBS: Não foram encontradas mais que 5 oportunidades para o aluno. Portanto, só aparecem 4** <br>
+**OBS2: As descrições ainda não estão sendo salvas, vamos planejar como obtê-las no próximo bimestre** 
+
+##### Recomendação para aluno 14: Interessado em bigdata
+```txt
+aluno14 HAS_SKILL hab_spark
+aluno14 HAS_SKILL hab_nosql
+aluno14 HAS_SKILL hab_sql
+aluno14 HAS_SKILL hab_data_viz
+aluno14 INTERESTED_IN tema_bigdata
+...
+op2 REQUIRES_SKILL hab_python
+op2 REQUIRES_SKILL hab_ml
+op2 REQUIRES_SKILL hab_tensorflow
+op2 REQUIRES_SKILL hab_data_viz
+op2 RELATED_TO_THEME tema_ia
+op3 REQUIRES_SKILL hab_sql
+op3 REQUIRES_SKILL hab_nosql
+op3 REQUIRES_SKILL hab_spark
+op3 REQUIRES_SKILL hab_data_viz
+op3 RELATED_TO_THEME tema_bigdata
+...
+op7 REQUIRES_SKILL hab_python
+op7 REQUIRES_SKILL hab_sql
+op7 REQUIRES_SKILL hab_communication
+op7 RELATED_TO_THEME tema_seguranca
+```
+<img width="762" height="209" alt="{5C0F5776-1FC8-4C61-840E-461516BEAE8C}" src="https://github.com/user-attachments/assets/a3a59a23-475f-4719-be96-8f1714f92a0e" />
+
+#### Opção 11. Encerrar a aplicação.
 
 ##### Encerrando a aplicação
 <img width="345" height="124" alt="{D7D46555-56A9-4399-A848-349AEDEB207E}" src="https://github.com/user-attachments/assets/aeee958d-2fcf-441a-930f-0e8a68200f9a" />
