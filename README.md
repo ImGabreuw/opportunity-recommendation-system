@@ -1,9 +1,9 @@
 ## Sistema de recomendação de oportunidades no ensino superior
 ### Integrantes
 
-- Enzo B. Proença - 10418579
-- Gabriel Ken Kazama Geronazzo - 10418247
-- Lucas Pires de Camargo Sarai - 10418013
+- Enzo B. Proença - 10418579 - 06D
+- Gabriel Ken Kazama Geronazzo - 10418247 - 06D
+- Lucas Pires de Camargo Sarai - 10418013 - 06D
 
 ### Problema abordado
 O ambiente universitário é um ecossistema rico em oportunidades de desenvolvimento profissional e pessoal, como projetos de iniciação científica, equipes de competição, empresas juniores e workshops. 
