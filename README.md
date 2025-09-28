@@ -23,15 +23,22 @@ E, entre eles, existem 4 tipos de relações possíveis, além de seus respectiv
 
 **OBS: Essas nomenclaturas e pesos foram omitidas no grafo anterior para melhor visualização das conexões.** 
 
-Os pesos foram distribuídos dessa forma, visto que é mais importante ser recomendado ao aluno oportunidades que correspondam com as habilidades e seus temas de interesse em conjunto, em seguida aquelas que o aluno atenda aos pré-requisitos de habildades e, após ambas, as relacionadas aos seus temas de interesse. <br>
+A distribuição dos pesos foi feita considerando que é mais importante ser recomendado ao aluno oportunidades que correspondam com as habilidades e seus temas de interesse em conjunto, em seguida aquelas que o aluno atenda aos pré-requisitos de habildades e, após ambas, as relacionadas aos seus temas de interesse. <br>
 Isso porque, as oportunidades ideais são as que ele atenda aos pré-requisitos e sejam de seu interesse. No entanto, para as que só correspondam a um desses dois, devem ser priorizadas as que o aluno possua as habilidades necessárias para que ele possa aproveitar a oportunidade, evitando, por exemplo, que se frustre por não entender o que lhe é solicitado e/ou ensinado. <br>
 Após passar por ambas, as de tema relacionado seriam as próximas recomendações, pois nem todas possuem pré-requisitos específicos, dado que podem ser de interesse geral.
 
 Abaixo, segue um grafo reduzido onde é possível visualizar melhor as relações e seus pesos:
 <img width="1050" height="539" alt="{2BC06CC9-8623-41F0-B432-16CA1FFED3B1}" src="https://github.com/user-attachments/assets/895a92e1-2412-4ccf-9da6-e984cd32bce1" />
 
-
 **OBS: Nesse exemplo, também foram omitidas algumas labels, sendo exibidas apenas uma vez, buscando melhor visualização do todo.**
+
+Para esse grafo reduzido, um exemplo de recomendação pode ser feito para o aluno 2. Para isso, o algoritmo vai olhar cada habilidade e tema de interesse do aluno e buscar as oportunidades conectadas a elas. No caso, ele possui habilidade em Python e SQL e interesse na área de dados. Para essas, a oportunidade 2 está conectado ao tema de dados (1,5) e à habilidade com SQL (2.0), somando 3,5 pontos. Já a oportunidade 1 está conectada à habilidade com Python (2.0) apenas, somando 2,0 pontos. Com isso, o rank gerado é:
+
+1. Op2 (3.5)
+2. Op1 (2.0)
+
+Note que os pesos das conexões dos alunos não é contabilizado, tendo importância reduzida no processo.
+
 
 
 ### ODS
@@ -133,10 +140,10 @@ aluno9 STUDENT
 <img width="660" height="93" alt="{A0191419-D478-4755-9A75-186E4CDC87BC}" src="https://github.com/user-attachments/assets/8c2cbb02-1262-4988-a146-0b3d9210fb24" />
 
 #### Opção 9. Apresentar a conexidade do grafo e o reduzido;
-##### Redução para grafo original C1
+##### Redução de grafo original C1
 <img width="501" height="240" alt="{7EB8E9ED-984C-407E-8FAF-FEBA08165850}" src="https://github.com/user-attachments/assets/edaf48d9-b78d-4476-a61d-45916ad7425b" />
 
-##### Exibição de grafo modificado para C3
+##### Redução de grafo modificado C3
 ```txt
 3
 aluno1 STUDENT
