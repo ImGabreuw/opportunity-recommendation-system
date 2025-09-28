@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         GraphReader reader = new GraphReader("grafo.txt");
-        GraphWriter writer = new GraphWriter("output.txt");
+        GraphWriter writer = new GraphWriter("grafo.txt");
         Console console = new Console(reader, writer);
 
         int option;
