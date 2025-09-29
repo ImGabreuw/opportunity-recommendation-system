@@ -106,11 +106,13 @@ aluno9 STUDENT
 
 #### Com inserção de arestas e atualização no original
 
-![](https://github.com/user-attachments/assets/f4117c15-f1b2-49de-b4f1-6b81a294ea47)
+![](https://github.com/user-attachments/assets/47b399d5-4892-4041-b3c2-04c4c4149590)<br>
+![](https://github.com/user-attachments/assets/c224d17c-ae1a-4930-b1ed-fc0e6ad2ec4b)<br>
+![](https://github.com/user-attachments/assets/d1fdfa1b-2537-42a4-af9a-82795e918dc4)<br>
+![](https://github.com/user-attachments/assets/8018d826-6459-487e-b8d1-51555c170561)<br>
+![](https://github.com/user-attachments/assets/537cad3d-36c6-4749-b536-9eaf355570e6)
 
-![](https://github.com/user-attachments/assets/d1fdfa1b-2537-42a4-af9a-82795e918dc4)
 
-![](https://github.com/user-attachments/assets/f5657f9d-5926-4405-96db-ffdea52ff375)
 
 #### Sem ter grafo base gerado (sem ler arquivo ou montar manualmente)
 
