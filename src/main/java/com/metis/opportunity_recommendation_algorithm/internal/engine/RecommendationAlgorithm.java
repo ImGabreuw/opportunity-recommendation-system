@@ -19,6 +19,12 @@ public class RecommendationAlgorithm {
 
     private final KnowledgeGraph graph;
 
+    /**
+        Devolve a lista de oportunidades recomendadas ao aluno, de forma rankeada.
+
+        @param studentId
+        @param topN Número de recomendações
+     */
     public List<ScoredOpportunityResponse> recommend(String studentId, int topN) {
         Node student = graph.getNode(studentId);
 
@@ -26,9 +32,12 @@ public class RecommendationAlgorithm {
             throw new IllegalArgumentException("Student not found");
         }
 
+        //Obtem as habilidades do aluno
         Set<Node> studentSkills = graph.getNodesConnectedFrom(student, RelationType.HAS_SKILL);
+        //Obtem os temas de interesse do aluno
         Set<Node> studentThemes = graph.getNodesConnectedFrom(student, RelationType.INTERESTED_IN);
 
+        //Para cada tema e habilidade, adiciona na lista as oportunidades relacionadas (ainda sem rankear)
         Set<Node> candidateOpportunities = new HashSet<>();
         for (Node habilidade : studentSkills) {
             candidateOpportunities.addAll(graph.getNodesConnectedTo(habilidade, RelationType.REQUIRES_SKILL));
@@ -37,10 +46,13 @@ public class RecommendationAlgorithm {
             candidateOpportunities.addAll(graph.getNodesConnectedTo(tema, RelationType.RELATED_TO_THEME));
         }
 
+        //Realiza o rankeamento
         List<ScoredOpportunityResponse> scoredOpportunities = new ArrayList<>();
         for (Node oportunidade : candidateOpportunities) {
             double score = 0.0;
 
+            //Verifica se as habilidades de cada oportunidade batem com as do aluno
+            //Para cada match, aumenta a pontuação da oportunidade em 2.0
             Set<Node> opportunitySkills = graph.getNodesConnectedFrom(oportunidade, RelationType.REQUIRES_SKILL);
             for (Node requiredSkill : opportunitySkills) {
                 if (studentSkills.contains(requiredSkill)) {
@@ -48,6 +60,7 @@ public class RecommendationAlgorithm {
                 }
             }
 
+            //Repete o processo acima com os temas, aumentando a pontuação em 1.5
             Set<Node> opportunityThemes = graph.getNodesConnectedFrom(oportunidade, RelationType.RELATED_TO_THEME);
             for (Node relatedTheme : opportunityThemes) {
                 if (studentThemes.contains(relatedTheme)) {
@@ -60,6 +73,7 @@ public class RecommendationAlgorithm {
             }
         }
 
+        //Retorna a lista na ordem decrescente de pontuação
         return scoredOpportunities.stream()
                 .sorted(Comparator.comparingDouble(ScoredOpportunityResponse::score).reversed())
                 .limit(topN)
