@@ -6,6 +6,12 @@ import com.metis.opportunity_recommendation_algorithm.io.GraphWriter;
 
 public class Main {
 
+    /**
+     * @author Enzo B. Proença - 10418579 - 06D
+     * @author Gabriel Ken Kazama Geronazzo - 10418247 - 06D
+     * @author Lucas Pires de Camargo Sarai - 10418013 - 06D
+     */
+
     public static void main(String[] args) {
         GraphReader reader = new GraphReader("grafo.txt");
         GraphWriter writer = new GraphWriter("grafo.txt");
